@@ -13,6 +13,8 @@
     "express": "^4.16.3",
     "morgan": "^1.9.1",
     "nodemon": "^1.18.4",
-    "socket.io": "^2.1.1"
+    "socket.io": "^2.1.1",
+    "validator": "^10.7.1",
+    "xss-filters": "^1.2.7"
   }
 }
