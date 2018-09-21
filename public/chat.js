@@ -8,9 +8,7 @@ $(function(){
     let chatroom = $('#chatroom');
     let feedback = $('#feedback p i');
 
-    function scroll(){
-        $('#chatroom').scrollTop($('#chatroom')[0].scrollHeight);
-    }
+    $('html, body').animate({ scrollTop: $('.message').last().offset().top }, 300);
 
     $(document).keypress(function(event){
         let keycode = (event.keyCode ? event.keyCode : event.which);
@@ -26,8 +24,9 @@ $(function(){
     });
     
     socket.on('new_message', data => {
-        chatroom.append(`<p class='message'><strong>${data.username}</strong>: ${data.message}</p>`);
-        $('html, body').animate({ scrollTop: $('.message').last().offset().top }, 300);
+        const time = new Date(data.time)
+        chatroom.append(`<hr class="my-1"><p class='message mb-0'><small>${time.toLocaleTimeString('en-US')}</small><br><strong>${data.username}</strong>: ${data.message}</p>`);
+        $('html, body').animate({ scrollTop: $('.message').last().offset().top }, 400);
     });
 
     send_username.click(() => {

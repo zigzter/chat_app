@@ -29,10 +29,14 @@
         <div class="h-100 flex-grow card">
           <section class="card-body" id="chatroom">
             <% for(let message of messages){ %>
-              <p class="message"><strong><%= message.username %></strong>: <%= message.message %> </p>
+            <hr class="my-1">
+              <p class="message text-muted mb-0">
+                <small><%= message.created_at.toLocaleTimeString('en-US') %></small> <br>
+                <strong><%= message.username %></strong>: <%= message.message %>
+              </p>
             <% } %>
           </section>
-          <section class="ml-2 mb-3" id="feedback">
+          <section class="ml-2 mb-4" id="feedback">
             <p class=""><i></i></p>
           </section>
         </div>

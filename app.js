@@ -9,8 +9,8 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 app.get('/', (req,res) => {
-    knex('chat_history').orderBy('created_at', 'asc').then( messages => {
-        res.render('index', { messages });
+    knex('chat_history').orderBy('created_at', 'desc').limit(20).then(messages => {
+        res.render('index', { messages: messages.reverse() });
     });
 });
 
@@ -29,8 +29,10 @@ io.on('connection', socket => {
         knex('chat_history').insert({
             username,
             message
-        }).then();
-        io.sockets.emit('new_message', { message, username });
+        }).returning('created_at').then(created_at => {
+            const [time] = created_at;
+            io.sockets.emit('new_message', { message, username, time });
+        });
         
     });
     socket.on('typing', data => {
