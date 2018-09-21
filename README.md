@@ -8,6 +8,10 @@
 
 * 'is typing' notification
 
+* XSS prevention
+
+* Chat history
+
 
 ## Features to add
 

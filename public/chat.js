@@ -26,7 +26,7 @@ $(function(){
     });
     
     socket.on('new_message', data => {
-        chatroom.append(`<p class='message'> ${data.username} : ${data.message}</p>`);
+        chatroom.append(`<p class='message'><strong>${data.username}</strong>: ${data.message}</p>`);
         $('html, body').animate({ scrollTop: $('.message').last().offset().top }, 300);
     });
 
