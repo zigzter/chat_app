@@ -23,7 +23,7 @@ io.on('connection', socket => {
     socket.on('change_username', data => {
         socket.username = xssFilters.inHTMLData(data.username);
     });
-    socket.on('new_message', data => {
+    socket.on('new_message', data => {n
         let message = xssFilters.inHTMLData(data.message);
         let username = xssFilters.inHTMLData(socket.username);
         knex('chat_history').insert({
